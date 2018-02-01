@@ -64,7 +64,7 @@ Int와 Float은 상호 연산 가능
   ```python
   len()
   len('hi') # 2
-  `
+  ```
 ### 5. Boolean
 
 ### 6. 타입 변환
