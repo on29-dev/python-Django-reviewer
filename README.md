@@ -60,14 +60,118 @@ Int와 Float은 상호 연산 가능
   print('Py' + 'thon')
   # Python
   ```
+#### (6) 특징
+  * 순서가 있는 자료형
+    * indexing이 되어 있어서 순서대로 값을 찾을 수 있음
+    * `len()`과 `슬라이싱` 사용 가능
+  ```python
+  # 슬라이싱 사례
+  string = 'Python'
+  print(string[1]) # 'y'
+  print(string[-1]) # 'n' (맨 마지막 글자 출력)
+  print(string[0:3]) # 'Pyt' (0이상 3미만까지(0,1,2) 출력)
+  print(string[0:-1]) # 'Pytho' (0이상 맨 마지막 글자 미만 출력)
+  print(string[:]) # 'Python' (전체 출력)
+  print(string[0:7:2]) # 'Pto' (0이상 3미만 중 2스텝씩 건너뛰어 출력)
+  print(string[::2]) # 'Pto' (String 중 짝수번째 글자만 출력)
+  ```
+  * Immutable(수정불가)
+    * Mutable(수정가능)의 반댓말
+    * 문자열 중간의 일부를 변경할 수 없다.(List는 변경가능하나 String은 불가)
+  ```python
+  p = 'Python'
+  p[0] = "J" # TypeError: 'str' object does not support item assignment (JavaScript의 경우 에러를 출력시키지 않지만 마찬가지로 변경되지도 않는다.) 
+  ```
+
 #### 빌트인 함수(built-in function)
   ```python
   len()
   len('hi') # 2
   ```
 ### 5. Boolean
+#### 참/거짓을 확인
+  * `bool(인자)'
+    * 인자의 참/거짓을 확인해줌
+  * True(참)의 친구들
+    * 
+  * False(거짓)의 친구들
+    * `[]` 빈 리스트
+    * `''` 빈 문자열
+    * `0` 숫자 0
+    * `None` NoneFalse 친구들 
+  ```python
+  1 in [1, 2, 3] # True
+  'j' not in 'jupyter notebook' # False
+  ```
 
-### 6. 타입 변환
+### 6. List
+#### (1) 특징
+  * Mutable
+    * String과 다르게 수정 가능하여 목록의 일부를 수정할 수 있다.
+  * `append()`, `del`, `reverse()`, `sort()`, `pop()`, `insert()`, `extend()`, `count()`, `remove()`
+    * 원하는 값을 리스트형태로 뽑아내려면 `슬라이싱`을 사용해야 한다.
+    * 위 메소드와 키워드는 모두 원본 리스트를 변경한다.
+  * `+` 덧셈 연산과 `extend()`
+    * 리스트가 합쳐지지만 원본 리스트를 변경하지 않는다. 원본 리스트를 변경하고자 하면 `extend()` 메소드를 사용해야 한다. 
+    * 성능 면에서 `extend()`가 우수하다고 한다.
+  ```python
+  likes = []
+  
+  likes.append('hi')
+  likes.append(9)
+  likes.append(2.5)
+  print(likes) # ['hi', 9, 2.5]
+  
+  del likes[0]
+  print(likes) # [9, 2.5]
+
+  likes.reverse()
+  print(likes) #[2.5, 9]
+
+  numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  del numbers[0]
+  number.pop(4)
+  # del과 pop()의 차이점은 
+  # 1. 차수를 입력하는 del과 값을 입력하는 pop()이라는 점과 
+  # 2. 결과값을 반환하지 않는 del과 뽑아낸 값을 반환해주는 pop()이라는 점
+
+  # insert(넣고자 하는 위치의 차수, 넣고자 하는 값)
+  numbers = [1, 2, 3, 4, 6]
+  numbers.insert(0, 0)
+  print(numbers) # [0, 1, 2, 3, 4, 6]
+  numbers.insert(-1, 5)
+  print(numbers) # [0, 1, 2, 3, 4, 5, 6]
+  
+  # 덧셈연산과 extend()
+  print([1, 2, 3] + [4, 5, 6]) # [1, 2, 3, 4, 5, 6]
+  numbers = [1, 2, 3]
+  numbers2 = [4, 5, 6]
+  numbers + numbers2
+  print(numbers) # [1, 2, 3] 원본 배열이 변경되지 않았다.
+  numbers.extend(numbers2)
+  print(numbers) # [1, 2, 3, 4, 5, 6] 원본 배열이 변경되었다.
+  print(numbers2) # [4, 5, 6] 인자로 쓰인 배열은 그대로 남아있다.
+  ```
+#### (2) 리스트 복사
+  * Python의 모든 값은 객체
+    * 모든 값이 call by reference(기본자료형이 call by value인 JavaScript와 다른 점)
+    * 의도치 않은 결과를 방지하기 위해 `copy()`를 사용
+  ```python
+  a = [1, 2, 3]
+  b = a
+  b.append(4)
+  print(b) # [1, 2, 3, 4]
+  print(a) # [1, 2, 3, 4] # 의도치 않게 a까지 변경됨(a와 b는 모두 같은 곳을 참조하기 때문)
+
+  # copy() 사용
+  a = [1, 2, 3]
+  b = a.copy
+  b.append(4)
+  print(a) # [1, 2, 3]
+  print(b) # [1, 2, 3, 4] # a는 변경되지 않았다.
+  ```
+
+### 7. 타입 변환
 ```python
 int() # 값을 Int로 변환
 float() # 값을 Float으로 변환
