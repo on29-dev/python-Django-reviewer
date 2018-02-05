@@ -20,14 +20,14 @@
 * 많은 양의 정보를 전달하기에 빠르다.
 * 번역서 느낌
 ---
-## 2일차(1): Type과 연산(Numbers, String, Boolean), 데이터 구조(List)
+## 2일차(1-2): Type과 연산(Numbers, String, Boolean), 데이터 구조(List)
 ### 1. 변수에 대한 이해
 * 변수의 목적
   * 불필요한 중복과 반복적인 작업을 제거
 * 파이썬 REPL 환경에서는 변수`_`가 기본적으로 최신 연산 값을 갖고 있음(인위적으로 _에 값을 할당해주면 이 기능이 작동하지 않음)
 ### 2. 연산자
-* a // b (a를 b로 나눈 몫)
-* a ** b (a를 b제곱한 값)
+* `a // b` (a를 b로 나눈 몫)
+* `a ** b` (a를 b제곱한 값)
 * 제곱을 함수로 구현할 수 있음
 ```python
 pow(a, b)
@@ -89,7 +89,7 @@ Int와 Float은 상호 연산 가능
   len('hi') # 2
   ```
 ### 5. Boolean
-#### 참/거짓을 확인
+#### (1) 참/거짓을 확인
   * `bool(인자)'
     * 인자의 참/거짓을 확인해줌
   * True(참)의 친구들
@@ -103,6 +103,13 @@ Int와 Float은 상호 연산 가능
   1 in [1, 2, 3] # True
   'j' not in 'jupyter notebook' # False
   ```
+#### (2) `and` 와 `or`
+  * and
+    * 좌항과 우항이 모두 참일 경우 True
+    * 나머지 모든 경우는 False
+  * or
+    * 좌항과 우항이 모두 거짓일 경우 False
+    * 나머지 모든 경우는 True
 
 ### 6. List
 #### (1) 특징
@@ -115,6 +122,7 @@ Int와 Float은 상호 연산 가능
     * 리스트가 합쳐지지만 원본 리스트를 변경하지 않는다. 원본 리스트를 변경하고자 하면 `extend()` 메소드를 사용해야 한다. 
     * 성능 면에서 `extend()`가 우수하다고 한다.
   ```python
+  # append()
   likes = []
   
   likes.append('hi')
@@ -122,19 +130,22 @@ Int와 Float은 상호 연산 가능
   likes.append(2.5)
   print(likes) # ['hi', 9, 2.5]
   
+  # del
   del likes[0]
   print(likes) # [9, 2.5]
 
+  # reverse()
   likes.reverse()
   print(likes) #[2.5, 9]
 
-  numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  del numbers[0]
-  number.pop(4)
+  # pop()
   # del과 pop()의 차이점은 
   # 1. 차수를 입력하는 del과 값을 입력하는 pop()이라는 점과 
   # 2. 결과값을 반환하지 않는 del과 뽑아낸 값을 반환해주는 pop()이라는 점
-
+  numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  del numbers[0]
+  number.pop(4)
+  
   # insert(넣고자 하는 위치의 차수, 넣고자 하는 값)
   numbers = [1, 2, 3, 4, 6]
   numbers.insert(0, 0)
@@ -155,7 +166,9 @@ Int와 Float은 상호 연산 가능
 #### (2) 리스트 복사
   * Python의 모든 값은 객체
     * 모든 값이 call by reference(기본자료형이 call by value인 JavaScript와 다른 점)
+    * 참고 문서 (https://item4.github.io/2015-07-18/Some-Ambiguousness-in-Python-Tutorial-Call-by-What/)
     * 의도치 않은 결과를 방지하기 위해 `copy()`를 사용
+  * 원본 값이 변경되는 것은 자료형이 객체형인지 아닌지가 아니라 `mutable`/`immutable`의 속성에 의해 결정된다.
   ```python
   a = [1, 2, 3]
   b = a
@@ -177,4 +190,49 @@ int() # 값을 Int로 변환
 float() # 값을 Float으로 변환
 str() # 값을 String으로 변환
 ```
+---
+## 3일차(1): 흐름 제어(If, for, while)
+### 1. If
+#### (1) 기본문법
+```python
+# python에서는 indent(tab)이 중요하다.
+# colon(:)을 빼먹지 말 것.
+if bool:
+  # bool이 참이면 실행되는 부분
+  print("bool is True!")
+elif bool:
+  # if의 bool이 거짓이고 elif의 bool이 참이면 실행되는 부분
+  print("bool is True!!")
+else:
+  # 모든 bool이 거짓인 경우 실행되는 부분
+  print("bools are all False")
+```
+#### (2) `random 모듈`과 `abs`
+  * `random 모듈`
+    * 빌트인(built-in, 내장)
+    * `import random`을 통해 호출하여 사용
+  ```python
+  import random
+  n = random.randint(1, 10)
+  print(n) #`1~10 중 랜덤한 정수값을 출력
+  ```
+  * `abs`
+    * `abs(시작값 - 끝값)`을 통해 시작값과 끝값의 차이(절대값)를 반환
+  ```python
+  print(abs(10 - 15)) # 5
+  ```
+### 2. 반복문 while
+#### (1) 기본문법
+```python
+while bool:
+  print('bool이 참인 경우 계속해서 실행합니다.')
+  break # 조건문과 함께 사용하여 특정 조건에서 반복을 정지시킵니다.
 
+# 예제
+n = 1
+while n <= 100:
+  print(n)
+  n += 1
+  if n > 100:
+    break
+```
