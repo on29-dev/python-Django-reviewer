@@ -46,7 +46,7 @@ Int와 Float은 상호 연산 가능
 #### (2) input() 함수
   * 사용자로부터 값을 받아오기 위해 사용
   * 타입은 String
-#### (3) Sting format
+#### (3) String format
   ```python
   "안녕하세요 %s씨, %d년 새해 복 많이 받으세요"%("Obama", 2018)
   "안녕하세요 {name}씨, 오늘은 {day}입니다.".format(
@@ -235,4 +235,55 @@ while n <= 100:
   n += 1
   if n > 100:
     break
+```
+### 3. 반목문 for
+#### (1) 기본문법
+* 순서가 있는 자료형과 같이 사용하게 됨 `String` `List`
+```python
+for el in [1, 2, 3]:
+  print(el)
+  # 1
+  # 2
+  # 3
+```
+#### (2) 메소드 & 키워드 활용 `range()` `break` `pass` `sum()`
+* `range()`
+  * 범위 설정
+  * `range([시작숫자부터(default는 0),] 끝 숫자미만까지)` 
+```python
+for i in range(100):
+  print(i)
+
+# range()와 list()를 활용해 간편하게 리스트 만들기
+list(range(1, 100+1)) # [1, 2, 3, ... 98, 99, 100]
+```
+* `break`
+  * 특정 조건에서 반복을 멈춘다.
+```python
+for i in range(100):
+  print(i)
+  if i > 30:
+    break
+  # 1
+  # 2 ...
+  # 31
+```
+* `pass`
+  * 특정 조건에서 반복문의 실행을 스킵하여 패스하고 다음으로 넘어간다.
+  * 비어있는 for문, 함수, 클래스 생성시 에러를 방지하는 팁으로 사용할 수 있음
+  * format()은 [고급 문자열 포매팅] https://wikidocs.net/13 나 2일차 3. (3) String format 참고
+```python
+for i in range(1, 100+1):
+  if i % 2 == 0:
+    print('{} 짝수입니다.'.format(i))
+  else:
+    pass
+  # 2 짝수입니다.
+  # 4 짝수입니다. ...
+  # 100 짝수입니다.
+```
+* `sum()`
+  * 범위 안에 있는 모든 수들의 합을 반환
+```python
+sum([1, 2, 3, 4, 5]) # 15
 ```
