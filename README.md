@@ -1,4 +1,4 @@
-# python-Django-reviewer
+# Python Django Study
 ---
 [Python & Django 웹프로그래밍 BOOT CAMP](http://www.fastcampus.co.kr/dev_online_python/) 학습 정리 repo
 
