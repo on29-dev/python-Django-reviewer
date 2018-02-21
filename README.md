@@ -15,8 +15,11 @@
 5. [함수](https://github.com/girin-dev/python-Django-reviewer/blob/master/학습정리/5.%20함수와%20재귀함수(예외처리).md)
 
 ## 참고자료
+[Python 3.6.4 documentation](https://docs.python.org/3/)
+
 [점프투파이썬](https://wikidocs.net/book/1)
 
 [장고걸스](https://tutorial.djangogirls.org/ko/)
+
 
 
