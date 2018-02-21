@@ -70,6 +70,23 @@ print(num_alpha)
 # 검토결과: count()를 써보세요
 # 오?!
 
+# count()를 써봤다.
+num_alpha_count = {}
+_pep20_filtered = ""
+_set = set()
+for k in pep20:
+    if k.isalpha():
+        _pep20_filtered += k
+for j in _pep20_filtered:
+    _set.add(j)
+for i in _set:
+    num_alpha_count[i] = _pep20_filtered.count(i)
+print(num_alpha_count)
+# {'T': 1, 'I': 3, 'c': 16, 'l': 33, 'b': 19, 'm': 15, 'p': 20, 'n': 38, 't': 74, 'o': 41, 'A': 3, 'u': 20, 'S': 3, 'e': 86, 'r': 31, 'E': 2, 'C': 1, 'f': 10, 'F': 1, 'R': 1, 'k': 2, 'N': 2, 'v': 5, 'B': 1, 'D': 1, 's': 42, 'a': 50, 'i': 49, 'd': 16, 'h': 29, 'y': 15, 'x': 6, 'w': 4, 'g': 11, 'U': 1}
+
+print(bool(num_alpha == num_alpha_count))
+# True
+
 
 ###
 
