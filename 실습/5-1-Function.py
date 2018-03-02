@@ -42,3 +42,9 @@ def range_list(start, end=None, step=None):
         return list(range(start, end))
     return list(range(start, end, step))
 
+def range_list_byhs(start, end=None, step=None):
+    if not end and not step:
+        return list(range(start))
+    elif not step:
+        return list(range(start, end))
+    return list(range(start, end, step))
